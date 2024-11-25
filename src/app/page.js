@@ -1,27 +1,43 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Landing from "./components/Landing";
 import VideoViewer from "./components/VideoViewer";
+import axios from "axios"; // Using Axios for the API call
 
 export default function Page() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [videos, setVideos] = useState([]);
   const PLAYLIST_ID = "PL_7V_ZbBe0voAv6_hjVnb_1362CVqE2LP";
+  const API_KEY = "AIzaSyBHSv6fT10HfnWHE1NoZhP0j_rU3QV385I";
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch(
-          `/api/youtube-videos?playlistId=${PLAYLIST_ID}`
+        const response = await axios.get(
+          "https://www.googleapis.com/youtube/v3/playlistItems",
+          {
+            params: {
+              part: "snippet",
+              playlistId: PLAYLIST_ID,
+              maxResults: 50,
+              key: API_KEY,
+            },
+          }
         );
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setVideos(data);
+        const videosData = response.data.items.map((item) => ({
+          name: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.high.url,
+          src: `https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`,
+        }));
+
+        setVideos(videosData);
       } catch (error) {
-        console.error("Failed to fetch videos:", error);
+        console.error(
+          "Failed to fetch videos:",
+          error.response?.data || error.message
+        );
       }
     };
 
@@ -35,8 +51,6 @@ export default function Page() {
   const handleVideoClose = () => {
     setSelectedVideo(null);
   };
-
-  console.log(videos);
 
   return (
     <div className="flex-grow overflow-hidden">
