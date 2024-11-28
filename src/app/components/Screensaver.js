@@ -57,7 +57,7 @@ const Screensaver = ({ idleTimeout = 100000 }) => {
             </div>
 
             <div className="h-[10vh] flex justify-center items-center p-6 z-50">
-              <button className="px-4 py-2 border-2 border-yellow-500 text-yellow-500 bg-transparent rounded-lg">
+              <button className="text-2xl px-4 py-2 border-2 border-yellow-500 text-yellow-500 bg-transparent rounded-lg">
                 Tap to Start
               </button>
             </div>
