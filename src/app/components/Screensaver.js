@@ -53,7 +53,7 @@ const Screensaver = ({ idleTimeout = 100000 }) => {
           <div className="w-full h-full absolute inset-0 flex flex-col">
             {/* Left Half - Logo */}
             <div className="h-[60vh] flex items-center justify-center z-50">
-              <img src="./logo.png" alt="Logo" className=" h-auto w-[70vw]" />
+              <img src="./logo.png" alt="Logo" className=" w-auto h-[60vw]" />
             </div>
 
             <div className="h-[10vh] flex justify-center items-center p-6 z-50">
