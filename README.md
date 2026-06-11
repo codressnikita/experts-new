@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Youtube_key: "AIzaSyBHSv6fT10HfnWHE1NoZhP0j_rU3QV385I"
+Youtube_key: "AIzaSyCmedAQ0QW5xgWr9fEikkAI7nKE3xYcPMc"
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
